@@ -1,4 +1,4 @@
-# DeltaVision-Claw-Shield
+**# DeltaVision-Claw-Shield
 
 <p>
   <h1> OVERVIEW </h1>
@@ -70,3 +70,4 @@ The system processes user requests through a defined pipeline of validation, log
   </h3>
 </p>
 <br>
+**
