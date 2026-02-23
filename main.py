@@ -1,22 +1,24 @@
 from planner import generate_plan
 from validation import validate_plan
 
-# Example user request
-intent = "view_stats"
-
-# Generate plan
+intent = "submit_score"
 plan = generate_plan(intent)
 
-# Simulated user state
+# Take user input
+score_input = input("Enter score (0-100): ")
+
+try:
+    score_input = int(score_input)
+except ValueError:
+    score_input = score_input  # keep it as string to fail validation
+
 user_data = {
-    "is_authenticated": True,
-    "db_connected": True
+    "score": score_input
 }
 
-# Validate
 is_valid, message = validate_plan(plan, user_data)
 
 if is_valid:
-    print("Executing:", plan["action"])
+    print("✅ Accepted:", message)
 else:
-    print("Blocked:", message)
+    print("❌ Rejected:", message)
