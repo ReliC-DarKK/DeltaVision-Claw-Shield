@@ -23,8 +23,8 @@ if __name__ == "__main__":
 from planner import generate_plan
 from validation import validate_plan
 
-intent = "submit_score"
-plan = generate_plan(intent)
+    intent = detect_intent(user_input)
+    print("Detected Intent:", intent)
 
 # Take user input
 score_input = input("Enter score (0-100): ")
