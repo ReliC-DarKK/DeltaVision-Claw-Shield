@@ -6,5 +6,5 @@ INTENT_MAP = {
     }
 }
 
-def generate_plan(intent):
+def execute_plan(intent):
     return INTENT_MAP.get(intent)
