@@ -1,11 +1,46 @@
-import reasoning_engine
-from reasoning import detect_intent
 from reasoning_engine import generate_plan
-while True:
+from validation import validate_plan
+from planner import execute_plan
+from logger import log_event
+
+def main():
     user_input = input("Enter command: ")
+
+    plan = generate_plan(user_input)
+
+    is_valid, message = validate_plan(plan, {"score": 10})
+
+    if is_valid:
+        result = execute_plan(plan)
+        print("✅ Action Executed")
+        print(result)
+    else:
+        print("⛔ Action Blocked")
+        print(message)
+
+if __name__ == "__main__":
+    main()
+from planner import generate_plan
+from validation import validate_plan
 
     intent = detect_intent(user_input)
     print("Detected Intent:", intent)
 
-    plan = generate_plan(intent)
-    print("Generated Plan:", plan)
+# Take user input
+score_input = input("Enter score (0-100): ")
+
+try:
+    score_input = int(score_input)
+except ValueError:
+    score_input = score_input  # keep it as string to fail validation
+
+user_data = {
+    "score": score_input
+}
+
+is_valid, message = validate_plan(plan, user_data)
+
+if is_valid:
+    print("✅ Accepted:", message)
+else:
+    print("❌ Rejected:", message)
